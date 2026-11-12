@@ -2,8 +2,8 @@ import "./Cabecalho.css";
 
 function Cabecalho(){
     return(
-        <header>
-            Carluga
+        <header className="Cabecalho_root">
+            <span>Carluga</span>
         </header>
     )
 };

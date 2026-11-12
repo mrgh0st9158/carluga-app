@@ -2,6 +2,9 @@
     background-color: var(--cor-primaria);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 0px 8px;
+
+
+    font-size: 40px;
 }

@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
 import "./Principal.css";
+import BotaoCustomizado from "../BotaoCustomizado/BotaoCustomizado";
 
-function Principal(props){
-    return(
+function Principal(props) {
+    return (
         <main className="Principal_root">
             <div className="Principal_titulo">
                 {props.voltarPara && (
                     <Link to={props.voltarPara}>
-                        voltar
+                        <BotaoCustomizado tipo="voltar">
+                            Voltar
+                        </BotaoCustomizado>
                     </Link>
                 )}
 

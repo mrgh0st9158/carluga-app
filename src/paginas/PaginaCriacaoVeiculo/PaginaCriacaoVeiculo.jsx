@@ -9,11 +9,7 @@ function PaginaCriacaoVeiculo() {
     const navigate = useNavigate()
     const [formVeiculo, setFormVeiculo] = useState({
         id: "",
-        nome: "",
-        email: "",
-        dataNascimento: "",
-        telefone: "",
-        cpf: "",
+        //A COMPLETAR...
     });
 
     const params = useParams();
@@ -29,10 +25,10 @@ function PaginaCriacaoVeiculo() {
     }, [params.id]);
 
     const salvar = () => {
-    if (!formVeiculo.nome.trim() || !formVeiculo.email.trim()) {
-      toast.error("Os campos nome e email são obrigatórios!");
-      return;
-    }
+    // if (!formVeiculo.nome.trim() || !formVeiculo.email.trim()) {
+    //   toast.error("Os campos nome e email são obrigatórios!");
+    //   return;
+    // }
 
     salvarVeiculo(formVeiculo);
     toast.success("Veículo salvo com sucesso!");
@@ -52,6 +48,24 @@ function PaginaCriacaoVeiculo() {
                 maxLength={50}
             />
 
+            <CampoCustomizado
+                label="Ano do Veículo"
+                value={formVeiculo.ano}
+                onChange={(e) =>
+                    setFormVeiculo({...formVeiculo, ano: e.target.value})
+                }
+                maxLength={4}
+            />
+
+            <CampoCustomizado
+                label="Descrição do Anúncio"
+                value={formVeiculo.descricao}
+                onChange={(e) =>
+                    setFormVeiculo({...formVeiculo, descricao: e.target.value})
+                }
+                maxLength={300}
+                
+            />
             <BotaoCustomizado tipo="primario" aoClicar={salvar}>
                 Salvar
             </BotaoCustomizado>

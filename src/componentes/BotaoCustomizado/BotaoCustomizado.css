@@ -22,3 +22,9 @@
   background-color: var(--cor-secundaria);
   color: var(--cor-texto-claro);
 }
+
+.BotaoCustomizado_voltar{
+  background-color: var(--cor-primaria);
+  color: var(--cor-texto-claro);
+  padding: 9px;
+}

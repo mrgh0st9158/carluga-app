@@ -10,6 +10,9 @@ function BotaoCustomizado(props){
         case "secundario":
             classes.push("BotaoCustomizado_secundario");
             break;
+        case "voltar":
+            classes.push("BotaoCustomizado_voltar");
+            break;
         default:
             break;
     }

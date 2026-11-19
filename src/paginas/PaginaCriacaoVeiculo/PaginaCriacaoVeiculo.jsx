@@ -65,7 +65,29 @@ function PaginaCriacaoVeiculo() {
                 }
                 maxLength={300}
                 
+                
+                
             />
+
+            <CampoCustomizado
+                label="Valor do Veículo"
+                value={formVeiculo.valorVeiculo}
+                onChange={(e) =>
+                    setFormVeiculo({...formVeiculo, valorVeiculo: e.target.value})
+                }                
+                
+            />
+
+            <CampoCustomizado
+                type="checkbox"
+                label="Seguro"
+                value={formVeiculo.seguro}
+                onChange={(e) =>
+                    setFormVeiculo({...formVeiculo, seguro: e.target.value})
+                }                
+                
+            />
+
             <BotaoCustomizado tipo="primario" aoClicar={salvar}>
                 Salvar
             </BotaoCustomizado>

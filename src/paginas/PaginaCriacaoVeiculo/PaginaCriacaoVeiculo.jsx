@@ -81,9 +81,19 @@ function PaginaCriacaoVeiculo() {
             <CampoCustomizado
                 type="checkbox"
                 label="Seguro"
-                value={formVeiculo.seguro}
+                value={formVeiculo.checkSeguro}
                 onChange={(e) =>
                     setFormVeiculo({...formVeiculo, seguro: e.target.value})
+                }                
+                
+            />
+
+            <CampoCustomizado
+                type="checkbox"
+                label="Limite de KM"
+                value={formVeiculo.checkLimitekm}
+                onChange={(e) =>
+                    setFormVeiculo({...formVeiculo, checkLimitekm: e.target.value})
                 }                
                 
             />

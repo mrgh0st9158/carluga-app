@@ -25,17 +25,17 @@ function PaginaCriacaoVeiculo() {
     }, [params.id]);
 
     const salvar = () => {
-    // if (!formVeiculo.nome.trim() || !formVeiculo.email.trim()) {
-    //   toast.error("Os campos nome e email são obrigatórios!");
-    //   return;
-    // }
+        // if (!formVeiculo.nome.trim() || !formVeiculo.email.trim()) {
+        //   toast.error("Os campos nome e email são obrigatórios!");
+        //   return;
+        // }
 
-    salvarVeiculo(formVeiculo);
-    toast.success("Veículo salvo com sucesso!");
-    navigate("/lista-veiculo");
-  };
+        salvarVeiculo(formVeiculo);
+        toast.success("Veículo salvo com sucesso!");
+        navigate("/lista-veiculo");
+    };
 
-  const titulo = formVeiculo.id ? "Editar Veiculo" : "Novo Veiculo";
+    const titulo = formVeiculo.id ? "Editar Veiculo" : "Novo Veiculo";
 
     return (
         <Principal titulo={titulo} voltarPara="/">
@@ -43,7 +43,7 @@ function PaginaCriacaoVeiculo() {
                 label="Modelo do Veículo"
                 value={formVeiculo.nome}
                 onChange={(e) =>
-                    setFormVeiculo({...formVeiculo, nome: e.target.value})
+                    setFormVeiculo({ ...formVeiculo, nome: e.target.value })
                 }
                 maxLength={50}
             />
@@ -52,7 +52,7 @@ function PaginaCriacaoVeiculo() {
                 label="Ano do Veículo"
                 value={formVeiculo.ano}
                 onChange={(e) =>
-                    setFormVeiculo({...formVeiculo, ano: e.target.value})
+                    setFormVeiculo({ ...formVeiculo, ano: e.target.value })
                 }
                 maxLength={4}
             />
@@ -61,41 +61,91 @@ function PaginaCriacaoVeiculo() {
                 label="Descrição do Anúncio"
                 value={formVeiculo.descricao}
                 onChange={(e) =>
-                    setFormVeiculo({...formVeiculo, descricao: e.target.value})
+                    setFormVeiculo({ ...formVeiculo, descricao: e.target.value })
                 }
                 maxLength={300}
-                
-                
-                
+
+
+
             />
+
+            <div className="campo-seguro">
+                <span>O veículo possui seguro?</span>
+
+                <div className="opcoes-radio">
+                    <CampoCustomizado
+                        type="radio"
+                        name="seguro"
+                        value="sim"
+                        checked={formVeiculo.seguro === "sim"}
+                        onChange={(e) =>
+                            setFormVeiculo({
+                                ...formVeiculo,
+                                seguro: e.target.value
+                            })
+                        }
+                    />
+                    Sim
+
+                    <CampoCustomizado
+                        type="radio"
+                        name="seguro"
+                        value="nao"
+                        checked={formVeiculo.seguro === "nao"}
+                        onChange={(e) =>
+                            setFormVeiculo({
+                                ...formVeiculo,
+                                seguro: e.target.value
+                            })
+                        }
+                    />
+
+                    Não
+
+                </div>
+            </div>
+
+            <div className="campo-seguro">
+                <span>O veículo possui limite de KMs?</span>
+
+                <div className="opcoes-radio">
+                    <CampoCustomizado
+                        type="radio"
+                        name="limiteKm"
+                        value="sim"
+                        checked={formVeiculo.limiteKm === "sim"}
+                        onChange={(e) =>
+                            setFormVeiculo({
+                                ...formVeiculo,
+                                limiteKm: e.target.value
+                            })
+                        }
+                    />
+                    Sim
+
+                    <CampoCustomizado
+                        type="radio"
+                        name="limiteKm"
+                        value="nao"
+                        checked={formVeiculo.limiteKm === "nao"}
+                        onChange={(e) =>
+                            setFormVeiculo({
+                                ...formVeiculo,
+                                limiteKm: e.target.value
+                            })
+                        }
+                    />
+                    Não
+                </div>
+            </div>
 
             <CampoCustomizado
                 label="Valor do Veículo"
                 value={formVeiculo.valorVeiculo}
                 onChange={(e) =>
-                    setFormVeiculo({...formVeiculo, valorVeiculo: e.target.value})
-                }                
-                
-            />
+                    setFormVeiculo({ ...formVeiculo, valorVeiculo: e.target.value })
+                }
 
-            <CampoCustomizado
-                type="checkbox"
-                label="Seguro"
-                value={formVeiculo.checkSeguro}
-                onChange={(e) =>
-                    setFormVeiculo({...formVeiculo, seguro: e.target.value})
-                }                
-                
-            />
-
-            <CampoCustomizado
-                type="checkbox"
-                label="Limite de KM"
-                value={formVeiculo.checkLimitekm}
-                onChange={(e) =>
-                    setFormVeiculo({...formVeiculo, checkLimitekm: e.target.value})
-                }                
-                
             />
 
             <BotaoCustomizado tipo="primario" aoClicar={salvar}>

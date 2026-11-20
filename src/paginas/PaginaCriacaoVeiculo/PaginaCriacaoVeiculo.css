@@ -1,0 +1,25 @@
+.campo-seguro {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.opcoes-radio {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.opcoes-radio label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.opcoes-radio input {
+    cursor: pointer;
+
+    accent-color: #b61c31;
+}

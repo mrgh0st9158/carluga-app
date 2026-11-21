@@ -23,3 +23,8 @@
 
     accent-color: #b61c31;
 }
+
+.containerImagemVeiculo {
+    display: flex;
+    justify-content: center;
+}

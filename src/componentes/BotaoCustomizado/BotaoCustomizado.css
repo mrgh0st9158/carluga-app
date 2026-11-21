@@ -20,7 +20,7 @@
 
 .BotaoCustomizado_secundario {
   background-color: var(--cor-secundaria);
-  color: var(--cor-texto-claro);
+  color: var(--cor-texto-padrao);
 }
 
 .BotaoCustomizado_voltar{

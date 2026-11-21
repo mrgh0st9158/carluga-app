@@ -1,15 +1,25 @@
 import { useEffect, useState } from "react";
-import CampoCustomizado from "../../componentes/CampoCustomizado/CampoCustomizado";
-import Principal from "../../componentes/Principal/Principal";
-import "./PaginaCriacaoVeiculo.css"
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from 'react-toastify';
+
+import "./PaginaCriacaoVeiculo.css"
+import Principal from "../../componentes/Principal/Principal";
+import { salvarVeiculo, buscarVeiculos } from "../../servicos/veiculos-servico";
+
+import CampoCustomizado from "../../componentes/CampoCustomizado/CampoCustomizado";
 import BotaoCustomizado from "../../componentes/BotaoCustomizado/BotaoCustomizado";
 
 function PaginaCriacaoVeiculo() {
     const navigate = useNavigate()
     const [formVeiculo, setFormVeiculo] = useState({
         id: "",
-        //A COMPLETAR...
+        modelo: "",
+        ano: "",
+        descricao: "",
+        seguro: "",
+        limiteKm: "",
+        valorVeiculo: "",
+
     });
 
     const params = useParams();
@@ -25,14 +35,38 @@ function PaginaCriacaoVeiculo() {
     }, [params.id]);
 
     const salvar = () => {
-        // if (!formVeiculo.nome.trim() || !formVeiculo.email.trim()) {
-        //   toast.error("Os campos nome e email são obrigatórios!");
-        //   return;
-        // }
+        switch (true) {
+            case !formVeiculo.modelo.trim():
+                    toast.error("O campo modelo é obrigatório!");
+                return;
 
+            case !formVeiculo.ano.trim():
+                toast.error("O campo ano é obrigatório!");
+                return;
+
+            case !formVeiculo.descricao.trim():
+                toast.error("O campo descrição é obrigatório!");
+                return;
+
+            case !formVeiculo.seguro.trim():
+                toast.error("O campo seguro é obrigatório!");
+                return;
+
+            case !formVeiculo.limiteKm.trim():
+                toast.error("O campo limite de KMs é obrigatório!");
+                return;
+
+            case !formVeiculo.valorVeiculo.trim():
+                toast.error("O campo valor do veículo é obrigatório!");
+                return;
+            
+            default:
+                break;
+        }
+        
         salvarVeiculo(formVeiculo);
         toast.success("Veículo salvo com sucesso!");
-        navigate("/lista-veiculo");
+        navigate("/lista-veiculos");
     };
 
     const titulo = formVeiculo.id ? "Editar Veiculo" : "Novo Veiculo";
@@ -41,9 +75,9 @@ function PaginaCriacaoVeiculo() {
         <Principal titulo={titulo} voltarPara="/">
             <CampoCustomizado
                 label="Modelo do Veículo"
-                value={formVeiculo.nome}
+                value={formVeiculo.modelo}
                 onChange={(e) =>
-                    setFormVeiculo({ ...formVeiculo, nome: e.target.value })
+                    setFormVeiculo({ ...formVeiculo, modelo: e.target.value })
                 }
                 maxLength={50}
             />
@@ -147,6 +181,40 @@ function PaginaCriacaoVeiculo() {
                 }
 
             />
+
+            <div className="container_imagem">
+
+                <CampoCustomizado
+                    type="file"
+                    accept="image/*"
+                    label="Foto do Veículo"
+                    onChange={(e) => {
+                        const imagem = e.target.files[0];
+                        if (imagem) {
+                            const reader = new FileReader();
+                            reader.onload = (event) => {
+                                setFormVeiculo({ ...formVeiculo, foto: event.target.result });
+                            };
+                            reader.readAsDataURL(imagem);
+                        }
+                    }}
+                />
+            </div>
+
+            {formVeiculo.foto && (
+                <div className="containerImagemVeiculo">
+                    <img
+                        src={formVeiculo.foto}
+                        alt="Foto do Veiculo"
+                        style={{
+                            width: "200px",
+                            height: "200px",
+                            objectFit: "cover",
+                            borderRadius: "8px",
+                        }}
+                    />
+                </div>
+            )}
 
             <BotaoCustomizado tipo="primario" aoClicar={salvar}>
                 Salvar

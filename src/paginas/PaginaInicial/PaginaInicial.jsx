@@ -15,6 +15,13 @@ function PaginaInicial(){
              Criação de Veículo
             </BotaoCustomizado>
 
+            <BotaoCustomizado
+            tipo="secundario"
+            aoClicar={() => navigate("/lista-veiculos")}>
+
+            Lista de Veículos
+            </BotaoCustomizado>
+
         </Principal>
     )
 }

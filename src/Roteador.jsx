@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import PaginaInicial from "./paginas/PaginaInicial/PaginaInicial";
 import PaginaCriacaoVeiculo from "./paginas/PaginaCriacaoVeiculo/PaginaCriacaoVeiculo";
+import PaginaListaVeiculos from "./paginas/PaginaListaVeiculos/PaginaListaVeiculos";
 
 const roteador = createBrowserRouter([
     {
@@ -11,6 +12,10 @@ const roteador = createBrowserRouter([
     {
         path: "criacao-veiculo",
         element: <PaginaCriacaoVeiculo /> 
+    },
+    {
+        path: "lista-veiculos",
+        element: <PaginaListaVeiculos />
     }
 
 ])

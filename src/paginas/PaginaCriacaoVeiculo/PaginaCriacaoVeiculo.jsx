@@ -15,6 +15,7 @@ function PaginaCriacaoVeiculo() {
         id: "",
         modelo: "",
         ano: "",
+        placa: "",
         descricao: "",
         seguro: "",
         limiteKm: "",
@@ -42,6 +43,10 @@ function PaginaCriacaoVeiculo() {
 
             case !formVeiculo.ano.trim():
                 toast.error("O campo ano é obrigatório!");
+                return;
+
+            case !formVeiculo.placa.trim():
+                toast.error("O campo placa do veículo é obrigatório!");
                 return;
 
             case !formVeiculo.descricao.trim():
@@ -92,15 +97,21 @@ function PaginaCriacaoVeiculo() {
             />
 
             <CampoCustomizado
+                label="Placa do Veículo"
+                value={formVeiculo.placa}
+                onChange={(e) =>
+                    setFormVeiculo({ ...formVeiculo, placa: e.target.value })
+                }
+                maxLength={7}
+            />
+
+            <CampoCustomizado
                 label="Descrição do Anúncio"
                 value={formVeiculo.descricao}
                 onChange={(e) =>
                     setFormVeiculo({ ...formVeiculo, descricao: e.target.value })
                 }
                 maxLength={300}
-
-
-
             />
 
             <div className="campo-seguro">

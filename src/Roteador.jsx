@@ -10,7 +10,7 @@ const roteador = createBrowserRouter([
         element: <PaginaInicial />
     },
     {
-        path: "criacao-veiculo",
+        path: "criacao-veiculo/:id?",
         element: <PaginaCriacaoVeiculo /> 
     },
     {

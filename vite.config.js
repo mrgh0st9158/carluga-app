@@ -14,7 +14,7 @@ export default defineConfig({
         'apple-touch-icon.png', ,
       ],
       manifest: {
-        name: 'Aplicativo de aluguel de veículos',
+        name: 'Carluga',
         short_name: 'Carluga',
         description: 'Aplicativo utilizado para ser um meio entre o locador de locatário de aluguel',
         theme_color: '#F62440',

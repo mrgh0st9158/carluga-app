@@ -1,0 +1,46 @@
+
+.ModalConfirmacao_overlay {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(5px);
+
+    z-index: 999;
+}
+
+.ModalConfirmacao_card {
+    width: 400px;
+    padding: 30px;
+
+    background-color: var(--cor-fundo-padrao);
+    border-radius: 12px;
+
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.ModalConfirmacao_botoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+.ModalConfirmacao_botoes button{
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+.botao_cancelar{
+    background-color: var(--cor-secundaria);
+}
+
+.botao_excluir{
+    background-color: var(--cor-primaria);
+}

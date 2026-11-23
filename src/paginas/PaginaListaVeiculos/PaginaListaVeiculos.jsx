@@ -7,6 +7,7 @@ import { useState } from "react";
 import { buscarVeiculos } from "../../servicos/veiculos-servico";
 import CampoCustomizado from "../../componentes/CampoCustomizado/CampoCustomizado";
 import BotaoCustomizado from "../../componentes/BotaoCustomizado/BotaoCustomizado";
+import ModalConfirmacao from "../../componentes/ModalConfirmacao/ModalConfirmacao";
 
 import { BsSliders } from "react-icons/bs";
 import { BiSolidPencil } from "react-icons/bi";
@@ -19,21 +20,30 @@ function PaginaListaVeiculos() {
     const [veiculos, setVeiculos] = useState(buscarVeiculos());
     const [termoPesquisa, setTermoPesquisa] = useState("");
     const [termoAplicado, setTermoAplicado] = useState("");
+    const [modalAberto, setModalAberto] = useState("");
+    const [veiculoSelecionado, setVeiculoSelecionado] = useState(null);
 
     const veiculosFiltrados = veiculos.filter((item) => {
         return item.modelo.toLowerCase().includes(termoAplicado.toLowerCase());
     })
 
-    const excluirVeiculo = (veiculoParaExcluir) => {
-        if (confirm(`Deseja excluir o veículo:  ${veiculoParaExcluir.modelo} de placa ${veiculoParaExcluir.placa}?`)){
-            const veiculosAtualizados = veiculos.filter(
-                (item) => item.id !== veiculoParaExcluir.id
-            );
+    const solicitarExclusao = (veiculo) => {
+        setVeiculoSelecionado(veiculo);
+        setModalAberto(true);
+    }
 
-            setVeiculos(veiculosAtualizados);
-            salvarNoLocalStorage("veiculos", veiculosAtualizados);
-            toast.success("Veículo excluído com sucesso!")
-        }
+    const excluirVeiculo = () => {
+        const veiculosAtualizados = veiculos.filter(
+            (item) => item.id !== veiculoSelecionado.id
+        );
+
+        setVeiculos(veiculosAtualizados);
+        salvarNoLocalStorage("veiculos", veiculosAtualizados);
+
+        setModalAberto(false);
+        setVeiculoSelecionado(null);
+
+        toast.success("Veículo excluído com sucesso!");
     }
 
     const editarVeiculo = (veiculoParaEditar) => {
@@ -60,29 +70,65 @@ function PaginaListaVeiculos() {
                     Pesquisar
                 </BotaoCustomizado>
 
-                <BsSliders size={30} />
-
             </div>
 
             {veiculosFiltrados.map((item, index) => {
                 return (
 
-                    <div key={index} className="PaginaListaVeiculos_item">
-                        <div>
-                            <h3>{item.modelo}</h3>
-                            <span className="PaginaListaVeiculos_modelo">
-                                {item.placa.toUpperCase()}
-                            </span>
+                    <div key={item.id} className="PaginaListaVeiculos_item">
+
+                        <div className="PaginaListaVeiculos_informacoes">
+
+                            {item.foto ? (
+                                <img
+                                    src={item.foto}
+                                    alt={`Foto do ${item.modelo}`}
+                                    className="PaginaListaVeiculos_imagem"
+                                />
+                            ) : (
+                                <div className="PaginaListaVeiculos_semImagem">
+                                    Sem imagem
+                                </div>
+                            )}
+
+                            <div>
+                                <h3>{item.modelo}</h3>
+
+                                <span className="PaginaListaVeiculos_modelo">
+                                    {item.placa.toUpperCase()}
+                                </span>
+                            </div>
+
                         </div>
 
                         <div className="PaginaListaVeiculos_botoesItem">
-                            <BiSolidPencil size={22} onClick={() => editarVeiculo(item)}/>
+                            <BiSolidPencil
+                                size={22}
+                                onClick={() => editarVeiculo(item)}
+                            />
 
-                            <FaTrashAlt size={22} color="red" onClick={() => excluirVeiculo(item)}/>
+                            <FaTrashAlt
+                                size={22}
+                                color="red"
+                                onClick={() => solicitarExclusao(item)}
+                            />
                         </div>
+
                     </div>
                 );
             })}
+
+            {modalAberto && (
+                <ModalConfirmacao
+                    titulo="Excluir veículo?"
+                    mensagem={`Deseja realmente excluir o veículo ${veiculoSelecionado.modelo}, de placa ${veiculoSelecionado.placa}?`}
+                    aoCancelar={() => {
+                        setModalAberto(false);
+                        setVeiculoSelecionado(null);
+                    }}
+                    aoConfirmar={excluirVeiculo}
+                />
+            )}
         </Principal>
     )
 }

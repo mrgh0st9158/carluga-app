@@ -4,10 +4,14 @@ import { toast } from 'react-toastify';
 
 import "./PaginaCriacaoVeiculo.css"
 import Principal from "../../componentes/Principal/Principal";
-import { salvarVeiculo, buscarVeiculos } from "../../servicos/veiculos-servico";
-
 import CampoCustomizado from "../../componentes/CampoCustomizado/CampoCustomizado";
 import BotaoCustomizado from "../../componentes/BotaoCustomizado/BotaoCustomizado";
+import { salvarVeiculo, buscarVeiculos } from "../../servicos/veiculos-servico";
+
+import { FaCarAlt } from "react-icons/fa";
+import { FaCalendarAlt } from "react-icons/fa";
+import { IoIosPricetags } from "react-icons/io";
+import { MdAttachMoney } from "react-icons/md";
 
 function PaginaCriacaoVeiculo() {
     const navigate = useNavigate()
@@ -38,7 +42,7 @@ function PaginaCriacaoVeiculo() {
     const salvar = () => {
         switch (true) {
             case !formVeiculo.modelo.trim():
-                    toast.error("O campo modelo é obrigatório!");
+                toast.error("O campo modelo é obrigatório!");
                 return;
 
             case !formVeiculo.ano.trim():
@@ -64,15 +68,24 @@ function PaginaCriacaoVeiculo() {
             case !formVeiculo.valorVeiculo.trim():
                 toast.error("O campo valor do veículo é obrigatório!");
                 return;
-            
+
             default:
                 break;
         }
-        
+
         salvarVeiculo(formVeiculo);
         toast.success("Veículo salvo com sucesso!");
         navigate("/lista-veiculos");
     };
+
+    const formatarMoeda = (valor) => {
+    const numero = Number(valor.replace(/\D/g, "")) / 100;
+
+    return new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    }).format(numero);
+};
 
     const titulo = formVeiculo.id ? "Editar Veiculo" : "Novo Veiculo";
 
@@ -81,6 +94,7 @@ function PaginaCriacaoVeiculo() {
             <CampoCustomizado
                 label="Modelo do Veículo"
                 value={formVeiculo.modelo}
+                icone={<FaCarAlt />}
                 onChange={(e) =>
                     setFormVeiculo({ ...formVeiculo, modelo: e.target.value })
                 }
@@ -88,19 +102,24 @@ function PaginaCriacaoVeiculo() {
             />
 
             <CampoCustomizado
+                type="date"
                 label="Ano do Veículo"
                 value={formVeiculo.ano}
+                icone={<FaCalendarAlt />}
                 onChange={(e) =>
                     setFormVeiculo({ ...formVeiculo, ano: e.target.value })
                 }
-                maxLength={4}
             />
 
             <CampoCustomizado
                 label="Placa do Veículo"
                 value={formVeiculo.placa}
+                icone={<IoIosPricetags />}
                 onChange={(e) =>
-                    setFormVeiculo({ ...formVeiculo, placa: e.target.value })
+                    setFormVeiculo({
+                        ...formVeiculo, placa:
+                            e.target.value.toUpperCase()
+                    })
                 }
                 maxLength={7}
             />
@@ -108,6 +127,7 @@ function PaginaCriacaoVeiculo() {
             <CampoCustomizado
                 label="Descrição do Anúncio"
                 value={formVeiculo.descricao}
+                rows="7"
                 onChange={(e) =>
                     setFormVeiculo({ ...formVeiculo, descricao: e.target.value })
                 }
@@ -187,8 +207,12 @@ function PaginaCriacaoVeiculo() {
             <CampoCustomizado
                 label="Valor do Veículo"
                 value={formVeiculo.valorVeiculo}
+                icone={<MdAttachMoney />}
                 onChange={(e) =>
-                    setFormVeiculo({ ...formVeiculo, valorVeiculo: e.target.value })
+                    setFormVeiculo({
+                        ...formVeiculo, valorVeiculo:
+                            formatarMoeda(e.target.value)
+                    })
                 }
 
             />

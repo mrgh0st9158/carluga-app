@@ -1,7 +1,7 @@
 import { buscarNoLocalStorage, salvarNoLocalStorage } from "./localstorage-servico";
 
 export const salvarVeiculo = (veiculo) => {
-  const veiculos = buscarNoLocalStorage("veiculo") || [];
+  const veiculos = buscarNoLocalStorage("veiculos") || [];
   if (!veiculo.id) {
     // inclusão de novo veiculo
     veiculo.id = Date.now();

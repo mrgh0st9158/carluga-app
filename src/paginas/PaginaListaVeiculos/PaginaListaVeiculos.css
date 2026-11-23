@@ -1,7 +1,8 @@
-.PaginaListaVeiculos_item{
+.PaginaListaVeiculos_item {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 
     background-color: #FFF2DB;
     box-shadow: 0px 5px 9px #000000;
@@ -18,8 +19,6 @@
     margin-bottom: 20px;
 }
 
-.container_barraDePesquisa
-
 .barraPesquisa_campo {
     flex: 1;
     min-width: 0;
@@ -30,9 +29,35 @@
     box-sizing: border-box;
 }
 
-.PaginaListaVeiculos_botoesItem{
+.PaginaListaVeiculos_informacoes {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.PaginaListaVeiculos_imagem {
+    width: 100px;
+    height: 80px;
+
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.PaginaListaVeiculos_semImagem {
+    width: 100px;
+    height: 80px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #ddd;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+.PaginaListaVeiculos_botoesItem {
     display: flex;
     align-self: flex-end;
-
     gap: 15px;
 }

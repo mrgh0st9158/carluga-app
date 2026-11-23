@@ -7,4 +7,21 @@
     padding: 8px;
     border: 1px solid #FFE5BF;
     border-radius: 12px;
+    width: 100%;
+}
+
+.container_iconeInput{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.container_iconeInput svg{
+    position: absolute;
+    left: 12px;
+    pointer-events: none;
+}
+
+.container_iconeInput svg + .CampoCustomizado_input{
+    padding-left: 36px;
 }

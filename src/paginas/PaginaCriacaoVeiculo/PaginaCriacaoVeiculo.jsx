@@ -6,6 +6,7 @@ import "./PaginaCriacaoVeiculo.css"
 import Principal from "../../componentes/Principal/Principal";
 import CampoCustomizado from "../../componentes/CampoCustomizado/CampoCustomizado";
 import BotaoCustomizado from "../../componentes/BotaoCustomizado/BotaoCustomizado";
+import { formatarComMascara, MASCARA_ANO } from "../../utils/formatar-com-mascara";
 import { salvarVeiculo, buscarVeiculos } from "../../servicos/veiculos-servico";
 
 import { FaCarAlt } from "react-icons/fa";
@@ -102,12 +103,12 @@ function PaginaCriacaoVeiculo() {
             />
 
             <CampoCustomizado
-                type="date"
                 label="Ano do Veículo"
                 value={formVeiculo.ano}
                 icone={<FaCalendarAlt />}
                 onChange={(e) =>
-                    setFormVeiculo({ ...formVeiculo, ano: e.target.value })
+                    setFormVeiculo({ ...formVeiculo, ano: 
+                        formatarComMascara(e.target.value, MASCARA_ANO)})
                 }
             />
 

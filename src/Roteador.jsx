@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PaginaInicial from "./paginas/PaginaInicial/PaginaInicial";
 import PaginaCriacaoVeiculo from "./paginas/PaginaCriacaoVeiculo/PaginaCriacaoVeiculo";
 import PaginaListaVeiculos from "./paginas/PaginaListaVeiculos/PaginaListaVeiculos";
+import PaginaCadastroUsuário from "./paginas/PaginaCadastroUsuário/PaginaCadastroUsuário";
 
 const roteador = createBrowserRouter([
     {
@@ -16,6 +17,10 @@ const roteador = createBrowserRouter([
     {
         path: "lista-veiculos",
         element: <PaginaListaVeiculos />
+    },
+    {
+        path: "cadastro-usuario",
+        element: <PaginaCadastroUsuário />
     }
 
 ])

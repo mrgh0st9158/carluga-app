@@ -10,6 +10,16 @@ const [formLogin, setFormLogin] = useState({
     senha: "",
 })
 
+const entrar = () => {
+    try{
+        if(!formLogin.email || !formLogin.senha){
+            throw new Error("Preencha todos os campos.")
+        }
+    }catch(error){
+        toast.error
+    }
+}
+
     return (
         <Principal titulo="Login" >
 

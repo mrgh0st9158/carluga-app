@@ -21,3 +21,11 @@ export const salvarUsuario = (usuario) => {
   usuarios.push(usuario);
   salvarNoLocalStorage("usuarios", usuarios);
 };
+
+  export const login = (usuario) => {
+  const usuarios = buscarNoLocalStorage("usuarios") || [];
+
+  const usuarioEncontrado = usuarios.find(
+    (u) => u.email === usuario.email && u.senha === md5(usuario.senha)
+  );
+}

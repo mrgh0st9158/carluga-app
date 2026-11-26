@@ -5,12 +5,9 @@ import PaginaCriacaoVeiculo from "./paginas/PaginaCriacaoVeiculo/PaginaCriacaoVe
 import PaginaListaVeiculos from "./paginas/PaginaListaVeiculos/PaginaListaVeiculos";
 import PaginaCadastroUsuário from "./paginas/PaginaCadastroUsuário/PaginaCadastroUsuário";
 import PaginaLogin from "./paginas/PaginaLogin/PaginaLogin";
+import ValidarAutenticacao from "./ValidarAutenticação";
 
 const roteador = createBrowserRouter([
-    {
-        path: "",
-        element: <PaginaInicial />
-    },
     {
         path: "login",
         element: <PaginaLogin />
@@ -20,19 +17,28 @@ const roteador = createBrowserRouter([
         element: <PaginaCadastroUsuário />
     },
     {
-        path: "criacao-veiculo/:id?",
-        element: <PaginaCriacaoVeiculo /> 
+        path: "",
+        element: <ValidarAutenticacao />,
+        children: [
+            {
+                path: "",
+                element: <PaginaInicial />
+            },
+            {
+                path: "criacao-veiculo/:id?",
+                element: <PaginaCriacaoVeiculo />
+            },
+            {
+                path: "lista-veiculos",
+                element: <PaginaListaVeiculos />
+            },
+        ]
     },
-    {
-        path: "lista-veiculos",
-        element: <PaginaListaVeiculos />
-    },
-    
 
 ])
 
-function Roteador(){
-    return(
+function Roteador() {
+    return (
         <RouterProvider router={roteador} />
     )
 }

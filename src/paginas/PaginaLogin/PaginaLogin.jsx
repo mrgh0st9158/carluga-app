@@ -3,18 +3,22 @@ import Principal from "../../componentes/Principal/Principal";
 import CampoCustomizado from "../../componentes/CampoCustomizado/CampoCustomizado";
 import BotaoCustomizado from "../../componentes/BotaoCustomizado/BotaoCustomizado";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function PaginaLogin() {
+    const navigate = useNavigate();
 const [formLogin, setFormLogin] = useState({
     email: "",
     senha: "",
-})
+});
 
 const entrar = () => {
     try{
         if(!formLogin.email || !formLogin.senha){
             throw new Error("Preencha todos os campos.")
         }
+        loginUsuario(formLogin)
+        navigate("/")
     }catch(error){
         toast.error
     }

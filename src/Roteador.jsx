@@ -4,11 +4,20 @@ import PaginaInicial from "./paginas/PaginaInicial/PaginaInicial";
 import PaginaCriacaoVeiculo from "./paginas/PaginaCriacaoVeiculo/PaginaCriacaoVeiculo";
 import PaginaListaVeiculos from "./paginas/PaginaListaVeiculos/PaginaListaVeiculos";
 import PaginaCadastroUsuário from "./paginas/PaginaCadastroUsuário/PaginaCadastroUsuário";
+import PaginaLogin from "./paginas/PaginaLogin/PaginaLogin";
 
 const roteador = createBrowserRouter([
     {
         path: "",
         element: <PaginaInicial />
+    },
+    {
+        path: "login",
+        element: <PaginaLogin />
+    },
+    {
+        path: "cadastro-usuario",
+        element: <PaginaCadastroUsuário />
     },
     {
         path: "criacao-veiculo/:id?",
@@ -18,10 +27,7 @@ const roteador = createBrowserRouter([
         path: "lista-veiculos",
         element: <PaginaListaVeiculos />
     },
-    {
-        path: "cadastro-usuario",
-        element: <PaginaCadastroUsuário />
-    }
+    
 
 ])
 

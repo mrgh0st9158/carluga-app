@@ -1,0 +1,23 @@
+.PaginaLogin_logo{
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+}
+
+.PaginaLogin_linkCadastro{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 10px;
+}
+
+.PaginaLogin_linkCadastro a{
+    color: var(--cor-primaria);
+}
+
+.PaginaLogin_titulo{
+    text-align: center;
+    margin: 5px;
+}

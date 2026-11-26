@@ -1,13 +1,23 @@
-import { buscarNoLocalStorage, salvarNoLocalStorage } from "./localstorage-servico";
+import {
+  buscarNoLocalStorage,
+  salvarNoLocalStorage,
+} from "./localstorage-servico";
+
+import md5 from 'js-md5';
 
 export const salvarUsuario = (usuario) => {
-    const usuarios = buscarNoLocalStorage("usuarios") || [];
+  const usuarios = buscarNoLocalStorage("usuarios") || [];
 
-    usuario.id = Date.now();
-    usuarios.push(usuario);
-    salvarNoLocalStorage("usuarios", usuarios);
-};
+  const usuarioJaCadastrado = usuarios.some((u) => u.email === usuario.email);
 
-export const buscarUsuarios = () => {
-    return buscarNoLocalStorage("usuarios") || [];
+  if (usuarioJaCadastrado) {
+    throw new Error("Usuário já cadastrado.");
+  }
+
+  usuario.senha = md5(usuario.senha);
+  delete usuario.confirmarSenha;
+
+  usuario.id = Date.now();
+  usuarios.push(usuario);
+  salvarNoLocalStorage("usuarios", usuarios);
 };

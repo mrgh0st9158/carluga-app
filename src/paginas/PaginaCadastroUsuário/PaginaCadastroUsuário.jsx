@@ -2,9 +2,9 @@ import "./PaginaCadastroUsuário"
 import Principal from "../../componentes/Principal/Principal"
 import CampoCustomizado from "../../componentes/CampoCustomizado/CampoCustomizado";
 import BotaoCustomizado from "../../componentes/BotaoCustomizado/BotaoCustomizado";
-import { salvarUsuario } from "../../servicos/usuarios-servico";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import {salvarUsuario} from "../../servicos/usuarios-servico"
 
 function PaginaCadastroUsuário() {
     const [formUsuario, setFormUsuario] = useState({
@@ -38,7 +38,7 @@ function PaginaCadastroUsuário() {
 
         salvarUsuario(formUsuario)
         toast.success("Usuário criado com sucesso!");
-        // navigate("/login");
+        navigate("/login");
     };
 
     return (
@@ -60,7 +60,7 @@ function PaginaCadastroUsuário() {
 
             <CampoCustomizado
                 label="Senha"
-                type="text"
+                type="password"
                 onChange={(e) =>
                     setFormUsuario({ ...formUsuario, senha: e.target.value })
                 }
@@ -68,13 +68,13 @@ function PaginaCadastroUsuário() {
 
             <CampoCustomizado
                 label="Confirmar Senha"
-                type="text"
+                type="password"
                 onChange={(e) =>
                     setFormUsuario({ ...formUsuario, confirmarSenha: e.target.value })
                 }
             />
 
-            <BotaoCustomizado tipo="secundario" aoClicar={salvar}>
+            <BotaoCustomizado tipo="primario" aoClicar={salvar}>
                 Salvar
             </BotaoCustomizado>
         </Principal>
